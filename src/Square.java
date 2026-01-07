@@ -1,4 +1,4 @@
-public class Square {
+/*public class Square {
     private int x;
     private int y;
     private int sideLength;
@@ -80,4 +80,4 @@ public class Square {
             System.out.println("\nОшибка: " + e.getMessage());
         }
     }
-}
+} */
