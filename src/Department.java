@@ -1,4 +1,4 @@
-public class Department {
+/*public class Department {
     private String departmentName;
     private Employee boss;
 
@@ -95,4 +95,4 @@ public class Department {
         System.out.println(liz);
         System.out.println(anton);
     }
-}
+} */
