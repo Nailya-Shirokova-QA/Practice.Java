@@ -1,68 +1,90 @@
-/*import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class Student {
-    private final String name;
-    private int[] grades;
-    private int gradeCount;
+    private String name;
+    private List<Integer> grades = new ArrayList<>();
 
-    // Конструктор с именем (без оценок)
     public Student(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Имя не может быть пустым");
-        }
         this.name = name;
-        this.grades = new int[10];
-        this.gradeCount = 0;
     }
 
-    // Конструктор с именем и начальными оценками
-    public Student(String name, int[] initialGrades) {
-        this(name);
-        if (initialGrades != null) {
-            for (int grade : initialGrades) {
-                addGrade(grade);
-            }
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Integer> getGrades() {
+        return Collections.unmodifiableList(grades);
+    }
+
+    public List<Integer> getGradesCopy() {
+        return new ArrayList<>(grades);
     }
 
     public void addGrade(int grade) {
         if (grade < 2 || grade > 5) {
-            throw new IllegalArgumentException("Оценка должна быть в диапазоне от 2 до 5");
+            throw new IllegalArgumentException(grade + " is wrong grade");
         }
+        grades.add(grade);
+    }
 
-        if (gradeCount == grades.length) {
-            grades = Arrays.copyOf(grades, grades.length * 2);
+    public double getAverageGrade() {
+        if (grades.isEmpty()) {
+            return 0.0;
         }
+        double sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return sum / grades.size();
+    }
 
-        grades[gradeCount] = grade;
-        gradeCount++;
+    public boolean hasExcellentGrades() {
+        if (grades.isEmpty()) {
+            return false;
+        }
+        for (int grade : grades) {
+            if (grade != 5) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.name);
+        hash = 13 * hash + Objects.hashCode(this.grades);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Student other = (Student) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return Objects.equals(this.grades, other.grades);
     }
 
     @Override
     public String toString() {
-        if (gradeCount == 0) {
-            return name + ": []";
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(": [");
-
-        for (int i = 0; i < gradeCount; i++) {
-            sb.append(grades[i]);
-            if (i < gradeCount - 1) {
-                sb.append(", ");
-            }
-        }
-        sb.append("]");
-
-        return sb.toString();
+        return "Student{" + "name=" + name + ", marks=" + grades + '}';
     }
-
-    public static void main(String[] args) {
-        Student student = new Student("Иванов Иван");
-        student.addGrade(5);
-        student.addGrade(4);
-        student.addGrade(3);
-        System.out.println(student);
-    }
-} */
+}
