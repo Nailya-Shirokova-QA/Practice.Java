@@ -1,33 +1,33 @@
 public class Main {
     public static void main(String[] args) {
+        Fraction fraction1 = new Fraction(2, 3);
+        Fraction fraction2 = new Fraction(2, 3);
+        Fraction fraction3 = new Fraction(3, 4);
 
-        System.out.println("Task 1: 2 + 3/5 + 2.3");
-        double result1 = NumberSum.sumAll(
-                2,
-                new Fraction(3, 5),
-                2.3
-        );
-        System.out.println("Result: " + result1);
+        System.out.println("fraction1: " + fraction1);
+        System.out.println("fraction2: " + fraction2);
+        System.out.println("fraction3: " + fraction3);
 
-        System.out.println("\nTask 2: 3.6 + 49/12 + 3 + 3/2");
-        double result2 = NumberSum.sumAll(
-                3.6,
-                new Fraction(49, 12),
-                3,
-                new Fraction(3, 2)
-        );
-        System.out.println("Result: " + result2);
+        System.out.println("\nComparison:");
+        System.out.println("fraction1.equals(fraction2): " + fraction1.equals(fraction2));
+        System.out.println("fraction1.equals(fraction3): " + fraction1.equals(fraction3));
 
-        System.out.println("\nTask 3: 1/3 + 1");
-        double result3 = NumberSum.sumAll(
-                new Fraction(1, 3),
-                1
-        );
-        System.out.println("Result: " + result3);
+        Fraction clonedFraction = fraction1.clone();
+        System.out.println("\nCloning:");
+        System.out.println("Original: " + fraction1);
+        System.out.println("Clone: " + clonedFraction);
+        System.out.println("Are equal? " + fraction1.equals(clonedFraction));
 
-        System.out.println("\n=== Verification ===");
-        System.out.println("Task 1: 2 + 0.6 + 2.3 = " + (2 + 0.6 + 2.3));
-        System.out.println("Task 2: 3.6 + 4.0833... + 3 + 1.5 = " + (3.6 + 49.0/12 + 3 + 1.5));
-        System.out.println("Task 3: 0.3333... + 1 = " + (1.0/3 + 1));
+        clonedFraction.setNumerator(5);
+        System.out.println("\nAfter modifying clone:");
+        System.out.println("Original: " + fraction1);
+        System.out.println("Clone: " + clonedFraction);
+        System.out.println("Are equal? " + fraction1.equals(clonedFraction));
+
+        System.out.println("\nHash codes:");
+        System.out.println("fraction1.hashCode(): " + fraction1.hashCode());
+        System.out.println("fraction2.hashCode(): " + fraction2.hashCode());
+        System.out.println("fraction3.hashCode(): " + fraction3.hashCode());
+        System.out.println("clonedFraction.hashCode(): " + clonedFraction.hashCode());
     }
 }
