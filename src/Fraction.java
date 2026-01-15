@@ -1,42 +1,56 @@
-public class Fraction extends Number {
-    private int num;
-    private int denum;
+public class Fraction {
+    private int numerator;
+    private int denominator;
 
-    public Fraction(int num, int denum) {
-        this.num = num;
-        this.denum = denum;
+    public Fraction(int numerator, int denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
-    public int getNum() {
-        return num;
+    public int getNumerator() {
+        return numerator;
     }
 
-    public int getDenum() {
-        return denum;
+    public int getDenominator() {
+        return denominator;
     }
 
-    @Override
-    public int intValue() {
-        return num / denum;
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
     }
 
-    @Override
-    public long longValue() {
-        return (long) num / denum;
-    }
-
-    @Override
-    public float floatValue() {
-        return (float) num / denum;
-    }
-
-    @Override
-    public double doubleValue() {
-        return (double) num / denum;
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
     }
 
     @Override
     public String toString() {
-        return num + "/" + denum;
+        return numerator + " / " + denominator;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Fraction other = (Fraction) obj;
+        return numerator == other.numerator && denominator == other.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * numerator + denominator;
+    }
+
+    @Override
+    public Fraction clone() {
+        try {
+            return new Fraction(this.numerator, this.denominator);
+        } catch (Exception e) {
+            throw new RuntimeException("Clone error", e);
+        }
     }
 }
