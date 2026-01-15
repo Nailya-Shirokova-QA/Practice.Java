@@ -1,33 +1,33 @@
 public class Main {
     public static void main(String[] args) {
+        Point point1 = new Point(3, 4);
+        Point point2 = new Point(3, 4);
+        Point point3 = new Point(5, 6);
 
-        System.out.println("Task 1: 2 + 3/5 + 2.3");
-        double result1 = NumberSum.sumAll(
-                2,
-                new Fraction(3, 5),
-                2.3
-        );
-        System.out.println("Result: " + result1);
+        System.out.println("point1: " + point1);
+        System.out.println("point2: " + point2);
+        System.out.println("point3: " + point3);
 
-        System.out.println("\nTask 2: 3.6 + 49/12 + 3 + 3/2");
-        double result2 = NumberSum.sumAll(
-                3.6,
-                new Fraction(49, 12),
-                3,
-                new Fraction(3, 2)
-        );
-        System.out.println("Result: " + result2);
+        System.out.println("\nComparison:");
+        System.out.println("point1.equals(point2): " + point1.equals(point2));
+        System.out.println("point1.equals(point3): " + point1.equals(point3));
 
-        System.out.println("\nTask 3: 1/3 + 1");
-        double result3 = NumberSum.sumAll(
-                new Fraction(1, 3),
-                1
-        );
-        System.out.println("Result: " + result3);
+        Point clonedPoint = point1.clone();
+        System.out.println("\nCloning:");
+        System.out.println("Original: " + point1);
+        System.out.println("Clone: " + clonedPoint);
+        System.out.println("Are equal? " + point1.equals(clonedPoint));
 
-        System.out.println("\n=== Verification ===");
-        System.out.println("Task 1: 2 + 0.6 + 2.3 = " + (2 + 0.6 + 2.3));
-        System.out.println("Task 2: 3.6 + 4.0833... + 3 + 1.5 = " + (3.6 + 49.0/12 + 3 + 1.5));
-        System.out.println("Task 3: 0.3333... + 1 = " + (1.0/3 + 1));
+        clonedPoint.setX(10);
+        System.out.println("\nAfter modifying clone:");
+        System.out.println("Original: " + point1);
+        System.out.println("Clone: " + clonedPoint);
+        System.out.println("Are equal? " + point1.equals(clonedPoint));
+
+        System.out.println("\nHash codes:");
+        System.out.println("point1.hashCode(): " + point1.hashCode());
+        System.out.println("point2.hashCode(): " + point2.hashCode());
+        System.out.println("point3.hashCode(): " + point3.hashCode());
+        System.out.println("clonedPoint.hashCode(): " + clonedPoint.hashCode());
     }
 }
