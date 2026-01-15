@@ -1,68 +1,44 @@
-/*import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Student {
-    private final String name;
-    private int[] grades;
-    private int gradeCount;
+public final class Student {
+    private List<Integer> grades = new ArrayList<>();
+    private String name;
+    private GradeRule gradeRule;
 
-    // Конструктор с именем (без оценок)
     public Student(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Имя не может быть пустым");
-        }
-        this.name = name;
-        this.grades = new int[10];
-        this.gradeCount = 0;
+        this(name, new DefaultGradeRule());
     }
 
-    // Конструктор с именем и начальными оценками
-    public Student(String name, int[] initialGrades) {
-        this(name);
-        if (initialGrades != null) {
-            for (int grade : initialGrades) {
-                addGrade(grade);
-            }
-        }
+    public Student(String name, GradeRule gradeRule) {
+        this.name = name;
+        this.gradeRule = gradeRule;
     }
 
     public void addGrade(int grade) {
-        if (grade < 2 || grade > 5) {
-            throw new IllegalArgumentException("Оценка должна быть в диапазоне от 2 до 5");
+        if (gradeRule.isValidGrade(grade)) {
+            grades.add(grade);
         }
+    }
 
-        if (gradeCount == grades.length) {
-            grades = Arrays.copyOf(grades, grades.length * 2);
-        }
+    public String getName() {
+        return name;
+    }
 
-        grades[gradeCount] = grade;
-        gradeCount++;
+    public List<Integer> getGrades() {
+        return new ArrayList<>(grades);
+    }
+
+    public void setGradeRule(GradeRule gradeRule) {
+        this.gradeRule = gradeRule;
+    }
+
+    public GradeRule getGradeRule() {
+        return gradeRule;
     }
 
     @Override
     public String toString() {
-        if (gradeCount == 0) {
-            return name + ": []";
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(": [");
-
-        for (int i = 0; i < gradeCount; i++) {
-            sb.append(grades[i]);
-            if (i < gradeCount - 1) {
-                sb.append(", ");
-            }
-        }
-        sb.append("]");
-
-        return sb.toString();
+        return "Student{name=" + name + ", grades=" + grades + '}';
     }
-
-    public static void main(String[] args) {
-        Student student = new Student("Иванов Иван");
-        student.addGrade(5);
-        student.addGrade(4);
-        student.addGrade(3);
-        System.out.println(student);
-    }
-} */
+}
