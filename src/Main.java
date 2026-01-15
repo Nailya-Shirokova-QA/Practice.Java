@@ -1,33 +1,26 @@
 public class Main {
     public static void main(String[] args) {
+        int[] array = {64, 34, 25, 12, 22, 11, 90};
 
-        System.out.println("Task 1: 2 + 3/5 + 2.3");
-        double result1 = NumberSum.sumAll(
-                2,
-                new Fraction(3, 5),
-                2.3
-        );
-        System.out.println("Result: " + result1);
+        ArraySorter sorter = new ArraySorter(array);
 
-        System.out.println("\nTask 2: 3.6 + 49/12 + 3 + 3/2");
-        double result2 = NumberSum.sumAll(
-                3.6,
-                new Fraction(49, 12),
-                3,
-                new Fraction(3, 2)
-        );
-        System.out.println("Result: " + result2);
+        System.out.println("Original array:");
+        sorter.printArray();
 
-        System.out.println("\nTask 3: 1/3 + 1");
-        double result3 = NumberSum.sumAll(
-                new Fraction(1, 3),
-                1
-        );
-        System.out.println("Result: " + result3);
+        sorter.bubbleSort();
 
-        System.out.println("\n=== Verification ===");
-        System.out.println("Task 1: 2 + 0.6 + 2.3 = " + (2 + 0.6 + 2.3));
-        System.out.println("Task 2: 3.6 + 4.0833... + 3 + 1.5 = " + (3.6 + 49.0/12 + 3 + 1.5));
-        System.out.println("Task 3: 0.3333... + 1 = " + (1.0/3 + 1));
+        System.out.println("Sorted array:");
+        sorter.printArray();
+
+        int[] anotherArray = {5, 1, 4, 2, 8};
+        ArraySorter anotherSorter = new ArraySorter(anotherArray);
+
+        System.out.println("Another array:");
+        anotherSorter.printArray();
+
+        anotherSorter.bubbleSort();
+
+        System.out.println("Sorted another array:");
+        anotherSorter.printArray();
     }
 }
