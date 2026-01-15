@@ -1,33 +1,37 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        System.out.println("=== Testing Cat ===");
+        Cat cat = new Cat("Vasya", 10, new ArrayList<>(Arrays.asList("Anton", "Oleg", "Igor")));
+        System.out.println("Before nullify:");
+        System.out.println(cat);
 
-        System.out.println("Task 1: 2 + 3/5 + 2.3");
-        double result1 = NumberSum.sumAll(
-                2,
-                new Fraction(3, 5),
-                2.3
-        );
-        System.out.println("Result: " + result1);
+        ObjectNullifier.nullifyObject(cat);
+        System.out.println("\nAfter nullify:");
+        System.out.println(cat);
 
-        System.out.println("\nTask 2: 3.6 + 49/12 + 3 + 3/2");
-        double result2 = NumberSum.sumAll(
-                3.6,
-                new Fraction(49, 12),
-                3,
-                new Fraction(3, 2)
-        );
-        System.out.println("Result: " + result2);
+        System.out.println("\n=== Static field should be null ===");
+        System.out.println("Cat breed: " + Cat.getBreed());
 
-        System.out.println("\nTask 3: 1/3 + 1");
-        double result3 = NumberSum.sumAll(
-                new Fraction(1, 3),
-                1
-        );
-        System.out.println("Result: " + result3);
+        System.out.println("\n=== Testing Dog ===");
+        Dog dog = new Dog("Sharik", 5, 12.5, new ArrayList<>(Arrays.asList("Ivan", "Maria")));
+        System.out.println("Before nullify:");
+        System.out.println(dog);
 
-        System.out.println("\n=== Verification ===");
-        System.out.println("Task 1: 2 + 0.6 + 2.3 = " + (2 + 0.6 + 2.3));
-        System.out.println("Task 2: 3.6 + 4.0833... + 3 + 1.5 = " + (3.6 + 49.0/12 + 3 + 1.5));
-        System.out.println("Task 3: 0.3333... + 1 = " + (1.0/3 + 1));
+        ObjectNullifier.nullifyObject(dog);
+        System.out.
+                println("\nAfter nullify:");
+        System.out.println(dog);
+
+        System.out.println("\n=== Static field should be null ===");
+        System.out.println("Dog breed: " + Dog.getBreed());
+
+        System.out.println("\n=== Primitive fields remain ===");
+        System.out.println("Cat age: " + cat.getAge());
+        System.out.println("Dog age: " + dog.getAge());
+        System.out.println("Dog weight: " + dog.getWeight());
     }
 }
