@@ -50,4 +50,3 @@ public class Fraction implements Cloneable {
         }
     }
 }
-
